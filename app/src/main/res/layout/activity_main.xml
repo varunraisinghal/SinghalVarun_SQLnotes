@@ -7,12 +7,86 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="9dp"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/textView"
+        android:layout_width="41dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:text="Name"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        tools:layout_editor_absoluteY="25dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="88dp"
+        android:onClick="addData"
+        android:text="Add Contact"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="531dp" />
+
+    <EditText
+        android:id="@+id/editText_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="292dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="116dp"
+        android:layout_height="47dp"
+        android:onClick="addData"
+        android:text="Add Phone"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="357dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="501dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="152dp"
+        android:layout_height="47dp"
+        android:onClick="addData"
+        android:text="Add Address"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="594dp" />
 
 </android.support.constraint.ConstraintLayout>
