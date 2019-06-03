@@ -1,5 +1,6 @@
 package com.example.mycontactapp;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -35,6 +36,16 @@ public class MainActivity extends AppCompatActivity
 
     public void addData(View view)
     {
+        Cursor curs = myDb.getAllData();
+        while (curs.getCount() > 0 && curs.moveToNext()) {
+            if (editName.getText().toString().equals(curs.getString(1))
+                    && editNumber.getText().toString().equals(curs.getString(2))
+                    && editAddress.getText().toString().equals(curs.getString(3)))
+            {
+                Toast.makeText(MainActivity.this, "FAILED - Contact already in database", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }
 
         boolean isInserted = myDb.insertData(editName.getText().toString(), editNumber.getText().toString(),
                 editAddress.getText().toString());
@@ -44,10 +55,9 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "Success - contact inserted", Toast.LENGTH_LONG).show();
         }
         else
-        {
+            {
             Toast.makeText(MainActivity.this, "FAILED - contact not inserted", Toast.LENGTH_LONG).show();
         }
-
     }
 
     public void viewData(View view)
@@ -92,8 +102,8 @@ public class MainActivity extends AppCompatActivity
         Log.d("MyContactApp", "MainActivity: launching search");
         Cursor curs = myDb.getAllData();
         StringBuffer buffer = new StringBuffer();
-        //Intent intent = new Intent(this, SearchActivity.class);
-        if (editName.getText().toString().isEmpty() && editNumber.getText().toString().isEmpty() && editAddress.getText().toString().isEmpty())
+        if (editName.getText().toString().isEmpty() && editNumber.getText().toString().isEmpty()
+                && editAddress.getText().toString().isEmpty())
         {
             showMessage("Error", "Nothing to search for!");
             return;
@@ -101,7 +111,9 @@ public class MainActivity extends AppCompatActivity
 
         while (curs.moveToNext())
         {
-            if ((editName.getText().toString().isEmpty() || editName.getText().toString().equals(curs.getString(1))) && (editNumber.getText().toString().isEmpty() || editNumber.getText().toString().equals(curs.getString(2))) && (editAddress.getText().toString().isEmpty() || editAddress.getText().toString().equals(curs.getString(3))))
+            if ((editName.getText().toString().isEmpty() || editName.getText().toString().equals(curs.getString(1)))
+                    && (editNumber.getText().toString().isEmpty() || editNumber.getText().toString().equals(curs.getString(2)))
+                    && (editAddress.getText().toString().isEmpty() || editAddress.getText().toString().equals(curs.getString(3))))
             {
                 buffer.append("ID: " + curs.getString(0) + "\n" +
                         "Name: " + curs.getString(1) + "\n" +
@@ -110,6 +122,8 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        //intent.putExtra(EXTRA_NAME, buffer.toString());
+        //startActivity(intent);
         if (buffer.toString().isEmpty())
         {
             showMessage("Error", "No matches found");
